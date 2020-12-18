@@ -43,6 +43,7 @@ import com.davidmiguel.gobees.utils.AndroidUtils;
 import java.util.Locale;
 
 import rebus.permissionutils.AskagainCallback;
+import rebus.permissionutils.AskAgainCallback;
 import rebus.permissionutils.PermissionEnum;
 import rebus.permissionutils.PermissionManager;
 import rebus.permissionutils.PermissionUtils;
@@ -85,6 +86,12 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
         getLocationIcon = (ImageView) root.findViewById(R.id.get_location_icon);
         locationPrecisionTextView = (TextView) root.findViewById(R.id.location_precision);
         notesEditText = (EditText) root.findViewById(R.id.add_apiary_notes);
+ nameEditText = root.findViewById(R.id.add_apiary_name);
+        latitudeEditText = root.findViewById(R.id.add_apiary_latitude);
+        longitudeEditText = root.findViewById(R.id.add_apiary_longitude);
+        getLocationIcon = root.findViewById(R.id.get_location_icon);
+        locationPrecisionTextView = root.findViewById(R.id.location_precision);
+        notesEditText = root.findViewById(R.id.add_apiary_notes);
 
         setHasOptionsMenu(true);
         setRetainInstance(true);
@@ -106,6 +113,7 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
         // Configure floating action button
         FloatingActionButton fab =
                 (FloatingActionButton) getActivity().findViewById(R.id.fab_add_apiary);
+ FloatingActionButton fab = getActivity().findViewById(R.id.fab_add_apiary);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,6 +211,8 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
                 .permission(PermissionEnum.ACCESS_FINE_LOCATION)
                 .askagain(true)
                 .askagainCallback(new AskagainCallback() {
+		.askAgain(true)
+                .askAgainCallback(new AskAgainCallback() {
                     @Override
                     public void showRequestPermission(final UserResponse response) {
                         new AlertDialog.Builder(getActivity())
@@ -245,6 +255,7 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
                     }
                 })
                 .ask();
+		.ask(getActivity());
         return false;
     }
 
@@ -257,6 +268,8 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         PermissionManager.handleResult(requestCode, permissions, grantResults);
+ super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionManager.handleResult(this, requestCode, permissions, grantResults);
     }
 
     @Override
