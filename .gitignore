@@ -28,6 +28,9 @@ gradle-app.setting
 
 # Keystore files
 app/keys
+# Sensitive files
+secrets/
+secrets\.tar
 
 # Local configuration file (sdk path, etc)
 local.properties
