@@ -261,6 +261,7 @@ compile 'com.android.support:design:26.1.0'
     compile 'com.jakewharton.timber:timber:4.5.1'
     // Crashlytics (Crash reporting) : https://docs.fabric.io/android/changelog.html#crashlytics
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+compile('com.crashlytics.sdk.android:crashlytics:2.7.0@aar') {
         transitive = true;
     }
 
